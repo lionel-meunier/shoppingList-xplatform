@@ -1,5 +1,22 @@
 <div class="tt__card">
-    <div class="content no-header">
-        CONNECT
+  <div class="content no-header">
+    <div *ngIf="error" class="alert alert-danger">
+      {{error.message}}
     </div>
+    <div *ngIf="!isLoggedIn()">
+      <button type="button" class="btn btn-block" (click)="signInWithGoogle()">
+        <i class="fa fa-google" aria-hidden="true"></i>
+        Login with Google
+      </button>
+    </div>
+    <div *ngIf="isLoggedIn()">
+      We has logged with {{userDetails.email}}
+      <button type="button" class="btn btn-block" (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
