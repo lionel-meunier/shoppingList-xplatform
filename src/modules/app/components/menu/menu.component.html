@@ -10,6 +10,10 @@
                 <i class="material-icons">home</i>
                 <a>Home</a>
             </li>
+            <li routerLinkActive="active" [routerLink]="['/signIn']" (click)="close()">
+              <i class="material-icons">check_circle</i>
+              <a>Sign In</a>
+            </li>
             <li routerLinkActive="active" [routerLink]="['/info/features']" (click)="close()">
                 <i class="material-icons">check_circle</i>
                 <a>Features</a>

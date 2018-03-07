@@ -10,6 +10,11 @@ import {environment} from '../../environments/environment';
 import {SharedModule} from '../shared/shared.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {CameraModule} from '../camera/camera.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFirestore} from 'angularfire2/firestore';
+import {AngularFireStorageModule} from 'angularfire2/storage';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -18,13 +23,17 @@ import {CameraModule} from '../camera/camera.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production && environment.serviceWorkerEnabled}),
     RouterModule.forRoot(ROUTES, {useHash: true}),
+    AngularFireModule.initializeApp(environment.firebase, 'shopping-list'),
+    AngularFireStorageModule,
+    AngularFireAuthModule,
     SharedModule.forRoot(),
     CameraModule.forRoot()
   ],
   bootstrap: [RootComponent],
-  providers: APP_SERVICES,
+  providers: [APP_SERVICES, AngularFirestore],
 })
 export class AppModule {
 }

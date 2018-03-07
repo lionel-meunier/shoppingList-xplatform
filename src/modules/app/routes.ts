@@ -17,5 +17,9 @@ export const ROUTES: Routes = [
     {
         path: 'info',
         loadChildren: 'modules/info/info.module#InfoModule'
-    }
+    },
+  {
+    path: 'signIn',
+    loadChildren: 'modules/sign-in/sign-in.module#SignInModule'
+  }
 ];

@@ -1,12 +1,26 @@
 <div class="tt__card">
     <header>
-        <h1>Please smile and hit the camera button.</h1>
+        <h1>Please connect to get shopping list</h1>
     </header>
     <div class="content">
-      <img *ngIf="imageSrc$ | async as imageSrc" [src]="imageSrc">
+      <ul>
+        <li>
+          <form #formCreate="ngForm" (ngSubmit)="onCreate(formCreate)" novalidate>
+            <input name="name" ngModel required>
+            <button>Submit</button>
+          </form>
+        </li>
+        <li class="text" *ngFor="let item of items | async">
+          {{item.name}}
+          <a *ngIf="!item.edit" (click)="item.edit=true">Edit</a>
+          <a *ngIf="!item.edit" (click)="onDelete(item)">Delete</a>
+          <form
+            *ngIf="item.edit"
+            #formUpdate="ngForm" (ngSubmit)="onUpdate(formUpdate, item)" novalidate>
+            <input name="name" [(ngModel)]="item.name" required>
+            <button>Submit</button>
+          </form>
+        </li>
+      </ul>
     </div>
-
-    <button class="tt__fab" (click)="takePhoto()">
-        camera_alt
-    </button>
 </div>
