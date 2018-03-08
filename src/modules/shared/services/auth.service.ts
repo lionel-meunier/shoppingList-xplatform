@@ -14,7 +14,6 @@ export class AuthService {
     this.user = _firebaseAuth.authState;
     this.user.subscribe(
       (user) => {
-        //Replace with rules in firebase after
         if (user && AUTH_USERS.indexOf(user.email) !== -1) {
           this.userDetails = user;
           this.router.navigate(['/']);
