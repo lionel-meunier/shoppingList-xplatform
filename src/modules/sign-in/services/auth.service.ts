@@ -14,7 +14,6 @@ export class AuthService {
     this.user = _firebaseAuth.authState;
     this.user.subscribe(
       (user) => {
-        console.log(user);
         //Replace with rules in firebase after
         if (user && AUTH_USERS.indexOf(user.email) !== -1) {
           this.userDetails = user;
@@ -26,20 +25,18 @@ export class AuthService {
     );
   }
 
-  signInWithGoogle() {
-    return new Promise((resolve, reject) => {
-      this._firebaseAuth.auth.signInWithPopup(
-        new firebase.auth.GoogleAuthProvider()
-      ).then((result) => {
-        if (result.user && AUTH_USERS.indexOf(result.user.email) !== -1) {
-          resolve();
-        } else {
-          this._firebaseAuth.auth.signOut();
-          reject({message: 'forbiden permissions'});
-        }
-      }, () => {
-        reject({message: 'error connection'});
-      });
+  async signInWithGoogle() {
+    this._firebaseAuth.auth.signInWithPopup(
+      new firebase.auth.GoogleAuthProvider()
+    ).then((result) => {
+      if (result.user && AUTH_USERS.indexOf(result.user.email) !== -1) {
+        return;
+      } else {
+        this._firebaseAuth.auth.signOut();
+        throw {message: 'forbiden permissions'};
+      }
+    }, () => {
+      throw {message: 'error connection'};
     });
   }
 

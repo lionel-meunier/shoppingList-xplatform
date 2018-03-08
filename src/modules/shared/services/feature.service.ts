@@ -16,8 +16,24 @@ export class FeatureService {
         this._browser = detect();
 
         this._features = {
-            [BrowserFeatureKey.ServiceWorker]: 'serviceWorker' in this._window.navigator,
-            [BrowserFeatureKey.MediaDevices]: 'mediaDevices' in this._nav && 'getUserMedia' in this._nav.mediaDevices,
+          [BrowserFeatureKey.ServiceWorker]: 'serviceWorker' in this._window.navigator,
+          [BrowserFeatureKey.Cache]: 'caches' in this._window,
+          [BrowserFeatureKey.PushAPI]: 'PushManager' in this._window,
+          [BrowserFeatureKey.NotificationsAPI]: 'Notification' in this._window,
+          [BrowserFeatureKey.BeforeInstallPromptEvent]: 'BeforeInstallPromptEvent' in this._window,
+          [BrowserFeatureKey.BackgroundSync]: 'SyncManager' in this._window,
+          [BrowserFeatureKey.NavigationPreloadManager]: 'NavigationPreloadManager' in this._window,
+          [BrowserFeatureKey.BudgetAPI]: 'budget' in this._nav && 'reserve' in (<any>this._nav).budget,
+          [BrowserFeatureKey.StorageEstimation]: 'storage' in this._nav && 'estimate' in (<any>this._nav).storage,
+          [BrowserFeatureKey.PersistentStorage]: 'storage' in this._nav && 'persist' in (<any>this._nav).storage,
+          [BrowserFeatureKey.WebShareAPI]: 'share' in this._nav,
+          [BrowserFeatureKey.MediaSessionAPI]: 'mediaSession' in this._nav,
+          [BrowserFeatureKey.MediaCapabilities]: 'mediaCapabilities' in this._nav,
+          [BrowserFeatureKey.DeviceMemory]: 'deviceMemory' in this._nav,
+          [BrowserFeatureKey.RelatedApps]: 'getInstalledRelatedApps' in this._nav,
+          [BrowserFeatureKey.PaymentRequestAPI]: 'PaymentRequest' in this._window,
+          [BrowserFeatureKey.CredentialManagement]: 'credentials' in this._nav,
+          [BrowserFeatureKey.WebBluetoothAPI]: 'bluetooth' in this._nav,
         };
     }
 
