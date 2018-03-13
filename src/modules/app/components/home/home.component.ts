@@ -1,53 +1,63 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild, OnInit} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
 import {NgForm} from '@angular/forms';
-
-export interface Item {
-  id: string;
-  name: string;
-  edit: boolean;
-}
+import {AuthService} from '../../../shared/services/auth.service';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {Item} from '../../models/item.model';
+import {ItemInterface} from '../../models/item.interface';
+import {ListService} from '../../services/list.service';
 
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  displayedColumns = ['check', 'name', 'nbr', 'actions'];
 
-  private itemsCollection: AngularFirestoreCollection<Item>;
-  items: Observable<Item[]>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<Item>('items');
-    this.items = this.itemsCollection.snapshotChanges().map(actions => {
-      return actions.map(a => {
-        console.log(a.payload.doc.id);
-        const data = a.payload.doc.data() as Item;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      });
+  private itemsCollection: AngularFirestoreCollection<ItemInterface>;
+  items: Observable<ItemInterface[]>;
+  dataSource = new MatTableDataSource();
+  newItem: Item;
+
+  constructor(private _authService: AuthService, private listService: ListService) {
+    this.newItem = new Item();
+  }
+
+  ngOnInit() {
+    this.dataSource = new MatTableDataSource();
+    this.listService.getItems().subscribe(data => {
+      this.dataSource.data = data;
     });
+  }
+
+  isLoggedIn(): boolean {
+    const isLogged = this._authService.isLoggedIn();
+    return isLogged;
   }
 
   public onCreate(formCreate: NgForm): void {
     if (formCreate.valid === true) {
-      const name: string = formCreate.value.name;
-      const edit = false;
-      const item: any = {name, edit};
-      this.itemsCollection.add(item);
+      this.listService.add(this.newItem);
     }
   }
 
-  public onUpdate(formUpdate: NgForm, item: Item): void {
+  public onUpdate(formUpdate: NgForm, item: ItemInterface): void {
     if (formUpdate.valid === true) {
-      console.log(this.itemsCollection.doc(item.id));
       item.edit = false;
-      this.itemsCollection.doc(item.id).update(item);
+      this.listService.update(item);
     }
   }
 
-  public onDelete(item: Item): void {
-      this.itemsCollection.doc(item.id).delete();
+  public onChange(item: ItemInterface): void {
+    this.listService.update(item);
+  }
+
+  public onDelete(item: ItemInterface): void {
+    this.listService.delete(item);
+
   }
 }

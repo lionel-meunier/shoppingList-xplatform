@@ -22,7 +22,6 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles/ui-kit/ui-kit.scss",
         "styles/app/app.scss"
       ],
       "scripts": [],

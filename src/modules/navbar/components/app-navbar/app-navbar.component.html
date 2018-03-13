@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="navbar-title">Shopping list</span>
+    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/home']" (click)="close()">
+      <a>Home</a>
+    </div>
+    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/signIn']" (click)="close()">
+      <a>Sign In</a>
+    </div>
+    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/info/features']" (click)="close()">
+      <a>Features</a>
+    </div>
+    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/info/about']" (click)="close()">
+      <a>About</a>
+    </div>
+    <span class="navbar-spacer"></span>
+
+
+    <a *ngIf="!isLoggedIn()" mat-button class="navbar-icon" [routerLink]="['/signIn']">
+      <span class="fa fa-sign-in-alt"></span>
+    </a>
+
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+
+    <button *ngIf="isLoggedIn()" mat-button  [matMenuTriggerFor]="appMenu">
+      <span class="fa fa-bars"></span>
+    </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>

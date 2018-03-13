@@ -1,7 +1,12 @@
+:host {
+  display: block;
+  padding-top : 15px;
+}
 .content {
-  text-align: center;
-
-  > img {
-    max-width: 100%;
+  .mat-column-check {
+    padding : 15px;
+  }
+  .checked {
+    text-decoration:line-through;
   }
 }

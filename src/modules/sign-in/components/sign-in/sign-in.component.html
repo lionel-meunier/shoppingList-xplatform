@@ -4,14 +4,14 @@
       {{error.message}}
     </div>
     <div *ngIf="!isLoggedIn()">
-      <button type="button" class="btn btn-block" (click)="signInWithGoogle()">
-        <i class="fa fa-google" aria-hidden="true"></i>
+      <button type="button" mat-raised-button color="primary" (click)="signInWithGoogle()">
+        <span class="fa fa-google" aria-hidden="true"></span>
         Login with Google
       </button>
     </div>
     <div *ngIf="isLoggedIn()">
       We has logged with {{userDetails.email}}
-      <button type="button" class="btn btn-block" (click)="logout()">
+      <button type="button" mat-raised-button color="warn" (click)="logout()">
         Logout
       </button>
 

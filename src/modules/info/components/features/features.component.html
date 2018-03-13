@@ -6,7 +6,9 @@
         <div class="tt__form">
             <div class="tt__toggle" *ngFor="let feature of features; let i = index">
                 <label [for]="i">{{ feature.key }}</label>
-                <input type="checkbox" [ngModel]="feature.supported" [id]="i" disabled>
+              <mat-checkbox [ngModel]="feature.supported" [id]="i" disabled [ngModelOptions]="{standalone: true}">
+                <span class="sr-only">Check</span>
+              </mat-checkbox>
             </div>
         </div>
     </div>

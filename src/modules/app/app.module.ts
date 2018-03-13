@@ -8,6 +8,7 @@ import {RootComponent} from './components/root/root.component';
 import {APP_DIRECTIVES} from './directives';
 import {environment} from '../../environments/environment';
 import {SharedModule} from '../shared/shared.module';
+import {NavbarModule} from '../navbar/navbar.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {CameraModule} from '../camera/camera.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -15,6 +16,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import {MatInputModule, MatButtonModule, MatTableModule, MatMenuModule, MatCheckboxModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,13 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
     AngularFireStorageModule,
     AngularFireAuthModule,
     SharedModule.forRoot(),
-    CameraModule.forRoot()
+    CameraModule.forRoot(),
+    NavbarModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatMenuModule,
+    MatCheckboxModule
   ],
   bootstrap: [RootComponent],
   providers: [APP_SERVICES, AngularFirestore],

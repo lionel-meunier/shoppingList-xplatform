@@ -1,63 +1,26 @@
-@import "../ui-kit/global/colors";
+@import "vars";
 
-ng-component {
-  display: flex;
-  flex: 1;
-}
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
 
-.tt__list {
-  .actions {
-    .icon {
-      &.disabled {
-        color: $text-color-dark;
-      }
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
 
-      &:not(.disabled) {
-        cursor: pointer;
-      }
-    }
-  }
-}
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
 
-.tt__navigation {
-  ul {
-    li {
-      cursor: pointer;
-    }
-  }
-}
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red);
 
-.tt__card {
-  .content {
-    &.no-header {
-      margin-top: 0;
-    }
-  }
-}
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
 
-router-outlet + ng-component {
-  justify-content: center;
-}
-
-.indicator {
-    color: $brand-color;
-    font-size: 2.8rem;
-    position: absolute;
-    right: 2rem;
-    top: 1.5rem;
-    animation: glow .5s infinite alternate;
-}
-
-@keyframes glow {
-    to {
-        text-shadow: 0 0 1px $accent-color;
-    }
-}
-
-.sync {
-    &[disabled]{
-        box-shadow: none;
-        background: #D2D7DC;
-        color: #F3F9FF;
-    }
-}
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);

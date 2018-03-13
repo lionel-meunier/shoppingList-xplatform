@@ -4,6 +4,7 @@ import {SIGNIN_COMPONENTS} from './components';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import {MatButtonModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
     RouterModule.forChild(SIGNIN_ROUTES),
     AngularFireAuthModule,
     SharedModule,
+    MatButtonModule
   ]
 })
 export class SignInModule {

@@ -1,0 +1,6 @@
+@import "~styles/app/vars";
+
+:host {
+  display: block;
+  margin-top : $app-header-height;
+}
