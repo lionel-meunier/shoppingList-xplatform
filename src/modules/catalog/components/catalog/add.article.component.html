@@ -1,0 +1,9 @@
+<form #formCreate="ngForm" (ngSubmit)="onCreate(formCreate)" novalidate>
+  <mat-form-field>
+    <input matInput
+           placeholder="Article Name"
+           name="name"
+           [(ngModel)]="newArticle.name" required>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Create New Article</button>
+</form>

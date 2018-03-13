@@ -1,0 +1,11 @@
+<div class="content">
+  CATALOG
+  UNE partie création, recherche mise à jour et suppression.
+  <app-add-article></app-add-article>
+  <div *ngFor="let article of articles">
+    {{article.name}}
+    <button mat-raised-button color="warn" (click)="onDelete(article)">
+      <span class="fa fa-trash"></span>
+    </button>
+  </div>
+</div>
