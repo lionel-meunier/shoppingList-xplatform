@@ -1,29 +1,29 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span class="navbar-title">Shopping list</span>
-    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/home']" (click)="close()">
-      <a>Home</a>
+    <div class="navbar-item" uiSrefActive="active" (click)="close()">
+      <a uiSref="home" >Home</a>
     </div>
-    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/signIn']" (click)="close()">
-      <a>Sign In</a>
+    <div class="navbar-item" uiSrefActive="active" (click)="close()">
+      <a uiSref="signIn">Sign In</a>
     </div>
-    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/info/features']" (click)="close()">
-      <a>Features</a>
+    <div class="navbar-item" uiSrefActive="active" (click)="close()">
+      <a  uiSref="features">Features</a>
     </div>
-    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/info/about']" (click)="close()">
-      <a>About</a>
+    <div class="navbar-item" uiSrefActive="active" (click)="close()">
+      <a  uiSref="about">About</a>
     </div>
-    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/catalog']" (click)="close()">
-      <a>Catalog</a>
+    <div class="navbar-item" uiSrefActive="active" (click)="close()">
+      <a  uiSref="catalog">Catalog</a>
     </div>
-    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/lists']" (click)="close()">
-      <a>Lists</a>
+    <div class="navbar-item" uiSrefActive="active" (click)="close()">
+      <a  uiSref="lists">Lists</a>
     </div>
 
     <span class="navbar-spacer"></span>
 
 
-    <a *ngIf="!isLoggedIn()" mat-button class="navbar-icon" [routerLink]="['/signIn']">
+    <a *ngIf="!isLoggedIn()" mat-button class="navbar-icon" uiSref="signIn">
       <span class="fa fa-sign-in-alt"></span>
     </a>
 

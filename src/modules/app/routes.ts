@@ -1,33 +1,40 @@
-import {Routes} from '@angular/router';
+import {Ng2StateDeclaration, loadNgModule} from '@uirouter/angular';
 import {HomeComponent} from './components/home/home.component';
 
-export const ROUTES: Routes = [
+export const ROUTES: Ng2StateDeclaration[] = [
   {
-    path: '',
-    pathMatch: 'full',
+    name : 'main',
+    url: '',
     redirectTo: '/home'
   },
   {
-    path: 'home',
+    name: 'main.home',
     component: HomeComponent,
     data: {
       title: 'ng-europe Demo',
     },
   },
+  // {
+  //   name: 'info',
+  //   parent: 'main',
+  //   lazyLoad : loadNgModule('modules/info/info.module')
+  // },
   {
-    path: 'info',
-    loadChildren: 'modules/info/info.module#InfoModule'
+    name: 'signIn',
+    parent: 'main',
+    lazyLoad : () => {
+      console.log('lazy load',  arguments);
+      // loadNgModule(System.import('src/modules/sign-in/sign-in.module'))
+    }
   },
-  {
-    path: 'signIn',
-    loadChildren: 'modules/sign-in/sign-in.module#SignInModule'
-  },
-  {
-    path: 'catalog',
-    loadChildren: 'modules/catalog/catalog.module#CatalogModule'
-  },
-  {
-    path: 'lists',
-    loadChildren: 'modules/all-list/all-list.module#AllListModule'
-  }
+  // {
+  //   name: 'catalog',
+  //   parent: 'main',
+  //   lazyLoad : loadNgModule('modules/catalog/catalog.module')
+  // },
+  // {
+  //   name: 'lists',
+  //   parent: 'main',
+  //   lazyLoad : loadNgModule('modules/all-list/all-list.module')
+  // }
 ];

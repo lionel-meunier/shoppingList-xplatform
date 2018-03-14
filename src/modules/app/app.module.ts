@@ -17,6 +17,7 @@ import {AngularFirestore} from 'angularfire2/firestore';
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {MatInputModule, MatButtonModule, MatTableModule, MatMenuModule, MatCheckboxModule} from '@angular/material';
+import {trace, Category, UIRouterModule, UIView} from '@uirouter/angular';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,10 @@ import {MatInputModule, MatButtonModule, MatTableModule, MatMenuModule, MatCheck
     BrowserModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production && environment.serviceWorkerEnabled}),
-    RouterModule.forRoot(ROUTES, {useHash: true}),
+    UIRouterModule.forRoot({
+      states: ROUTES,
+      otherwise: { state: 'app', params: {} }
+    }),
     AngularFireModule.initializeApp(environment.firebase, 'shopping-list'),
     AngularFireStorageModule,
     AngularFireAuthModule,

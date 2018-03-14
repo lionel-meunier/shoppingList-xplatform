@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {AppNavbarComponent} from './components/app-navbar/app-navbar.component';
 import {RouterModule} from '@angular/router';
 import {MatToolbarModule, MatMenuModule, MatButtonModule} from '@angular/material';
+import {UIRouterModule} from '@uirouter/angular';
 
 @NgModule({
   declarations : [
@@ -11,8 +12,8 @@ import {MatToolbarModule, MatMenuModule, MatButtonModule} from '@angular/materia
   imports: [
     CommonModule,
     MatToolbarModule,
+    UIRouterModule,
     MatMenuModule,
-    RouterModule,
     MatButtonModule
   ],
   exports : [

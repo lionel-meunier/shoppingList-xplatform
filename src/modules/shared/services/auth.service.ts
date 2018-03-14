@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {Observable} from 'rxjs/Observable';
@@ -10,18 +9,18 @@ export class AuthService {
   private user: Observable<firebase.User>;
   public userDetails: firebase.User = null;
 
-  constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
+  constructor(private _firebaseAuth: AngularFireAuth) {
     this.user = _firebaseAuth.authState;
-    this.user.subscribe(
-      (user) => {
-        if (user && AUTH_USERS.indexOf(user.email) !== -1) {
-          this.userDetails = user;
-          this.router.navigate(['/']);
-        } else {
-          this.userDetails = null;
-        }
-      }
-    );
+    // this.user.subscribe(
+    //   (user) => {
+    //     if (user && AUTH_USERS.indexOf(user.email) !== -1) {
+    //       this.userDetails = user;
+    //       this.router.navigate(['/']);
+    //     } else {
+    //       this.userDetails = null;
+    //     }
+    //   }
+    // );
   }
 
   async signInWithGoogle() {
@@ -49,6 +48,9 @@ export class AuthService {
 
   logout() {
     this._firebaseAuth.auth.signOut()
-      .then((res) => this.router.navigate(['/']));
+      .then((res) => {
+        console.log('teetet');
+        // this.router.navigate(['/'])
+      });
   }
 }
