@@ -1,9 +1,9 @@
-import {ItemListInterface} from './item.list.interface';
+import {Article} from './article.model';
 
-export class ItemList implements ItemListInterface {
+export class ItemList {
   id: string;
   nbr: number;
-  name: string;
+  ref: Article;
   check: boolean;
   edit: boolean;
 
@@ -20,16 +20,18 @@ export class ItemList implements ItemListInterface {
     this.check = !this.check;
   }
 
-  parse(id, data) {
+  parseData(id, data) {
     this.id = id;
-    this.name = data.name;
     this.nbr = data.nbr;
     this.check = data.check;
   }
 
+  addRef(ref: Article) {
+    this.ref = ref;
+  }
+
   exportData() {
     return {
-      name: this.name,
       nbr: this.nbr,
       check: this.check
     };

@@ -16,7 +16,6 @@ export class AuthService {
       (user) => {
         if (user && AUTH_USERS.indexOf(user.email) !== -1) {
           this.userDetails = user;
-          this.router.navigate(['/']);
         } else {
           this.userDetails = null;
         }

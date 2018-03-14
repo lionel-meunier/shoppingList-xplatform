@@ -1,33 +1,36 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
-import {List} from './../models/list.model';
+import {ItemList} from '../models/item.list.model';
+import {ItemCollectionInterface} from '../models/item.collection.interface';
+import {ShoppingAllListService} from './shopping.all.list.service';
+import {List} from '../models/list.model';
 import {Observable} from 'rxjs/Observable';
-import {FirebaseCollectionService} from './firebase.collection.service';
 import {Article} from '../models/article.model';
 
 @Injectable()
-export class ShoppingListService extends FirebaseCollectionService {
-  listsCollection: AngularFirestoreCollection<List>;
-  lists: Observable<List[]>;
+export class ShoppingListService {
+  collection: AngularFirestoreCollection<ItemCollectionInterface>;
 
-  constructor(public afs: AngularFirestore) {
-    super(afs, 'lists');
+  constructor(public afs: AngularFirestore, private allListService: ShoppingAllListService) {
   }
 
-  createEmptyModel(): List {
-    return new List();
+  createEmptyModel(): ItemList {
+    return new ItemList();
   }
 
-  getItems() {
-    return this.collection.snapshotChanges().map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data();
-        const id = a.payload.doc.id;
-        const item = new List();
-        item.parseData(id, data);
-        return item;
+  getItems(idList: string) {
+    return Observable.fromPromise(this.allListService.getItemById(idList).then((list: List) => {
+      list.itemsRef.forEach((dataItems) => {
+        const item = new ItemList();
+        dataItems.ref.get().then(docRef => {
+          const article = new Article();
+          article.parseData(docRef.id, docRef.data());
+          item.addRef(article);
+        });
+        list.items.push(item);
       });
-    });
+      return list.items;
+    }));
   }
 
 }

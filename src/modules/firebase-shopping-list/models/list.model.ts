@@ -4,6 +4,8 @@ export class List implements ItemCollectionInterface {
   id: string;
   name: string;
   nbr: number;
+  itemsRef: Array<any>;
+  items: Array<any>;
 
   constructor() {
   }
@@ -12,6 +14,8 @@ export class List implements ItemCollectionInterface {
     this.id = id;
     this.name = data.name;
     this.nbr = Array.isArray(data.items) ? data.items.length : 0;
+    this.itemsRef = data.items;
+    this.items = [];
   }
 
   exportData(): any {

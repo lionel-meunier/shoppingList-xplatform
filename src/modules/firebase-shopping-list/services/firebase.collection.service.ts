@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
 import {ItemCollectionInterface} from '../models/item.collection.interface';
+import {List} from '../models/list.model';
 
 
 @Injectable()
@@ -17,7 +18,8 @@ export class FirebaseCollectionService {
     throw new Error('return object is necessary');
   }
 
-  getItems() {
+  getItems(): Observable<ItemCollectionInterface[]> {
+    return new Observable();
   }
 
   add(newItem: ItemCollectionInterface) {

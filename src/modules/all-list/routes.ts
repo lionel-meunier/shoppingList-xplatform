@@ -8,5 +8,9 @@ export const ALL_LIST_ROUTES: Routes = [
     data: {
       title: 'Lists',
     },
-  }
+  },
+  {
+    path: ':idList',
+    loadChildren: 'modules/items-list/items-list.module#ItemsListModule'
+  },
 ];

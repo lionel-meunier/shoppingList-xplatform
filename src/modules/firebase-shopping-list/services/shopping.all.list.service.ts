@@ -3,12 +3,9 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {List} from './../models/list.model';
 import {Observable} from 'rxjs/Observable';
 import {FirebaseCollectionService} from './firebase.collection.service';
-import {Article} from '../models/article.model';
 
 @Injectable()
 export class ShoppingAllListService extends FirebaseCollectionService {
-  listsCollection: AngularFirestoreCollection<List>;
-  lists: Observable<List[]>;
 
   constructor(public afs: AngularFirestore) {
     super(afs, 'lists');
@@ -18,7 +15,7 @@ export class ShoppingAllListService extends FirebaseCollectionService {
     return new List();
   }
 
-  getItems() {
+  getItems(): Observable<List[]> {
     return this.collection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data();
@@ -30,4 +27,15 @@ export class ShoppingAllListService extends FirebaseCollectionService {
     });
   }
 
+  getItemById(id: string) {
+    return new Promise((resolve => {
+      this.collection.doc(id).ref.onSnapshot(doc => {
+        const data = doc.data();
+        const id = doc.id;
+        const item = new List();
+        item.parseData(id, data);
+        resolve(item);
+      });
+    }));
+  }
 }
