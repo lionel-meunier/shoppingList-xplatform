@@ -6,7 +6,7 @@ import {FirebaseCollectionService} from './firebase.collection.service';
 import {Article} from '../models/article.model';
 
 @Injectable()
-export class ShoppingListService extends FirebaseCollectionService {
+export class ShoppingAllListService extends FirebaseCollectionService {
   listsCollection: AngularFirestoreCollection<List>;
   lists: Observable<List[]>;
 

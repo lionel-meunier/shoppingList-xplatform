@@ -14,6 +14,10 @@ export class ShoppingArticleService extends FirebaseCollectionService {
     super(afs, 'articles');
   }
 
+  createEmptyModel() {
+    return new Article();
+  }
+
   getItems() {
     return this.collection.snapshotChanges().map(changes => {
       return changes.map(a => {

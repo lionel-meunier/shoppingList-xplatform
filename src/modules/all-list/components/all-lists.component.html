@@ -1,0 +1,10 @@
+<div class="content">
+
+  <app-add-list></app-add-list>
+  <div *ngFor="let list of lists">
+    {{list.name}}
+    <button mat-raised-button color="warn" (click)="onDelete(list)">
+      <span class="fa fa-trash"></span>
+    </button>
+  </div>
+</div>

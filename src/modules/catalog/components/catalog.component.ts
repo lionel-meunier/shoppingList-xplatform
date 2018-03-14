@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ShoppingArticleService} from '../../../firebase-shopping-list/services/article.service';
+import {ShoppingArticleService} from '../../firebase-shopping-list/services/article.service';
 import {MatDialog} from '@angular/material';
-import {Article} from '../../../firebase-shopping-list/models/article.model';
+import {Article} from '../../firebase-shopping-list/models/article.model';
 import {DeleteArticleDialogComponent} from './delete.article.dialog';
 
 @Component({

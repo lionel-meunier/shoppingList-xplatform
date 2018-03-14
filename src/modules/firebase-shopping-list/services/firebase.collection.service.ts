@@ -13,6 +13,10 @@ export class FirebaseCollectionService {
     this.collection = afs.collection<ItemCollectionInterface>(pathItems);
   }
 
+  createEmptyModel(): ItemCollectionInterface {
+    throw new Error('return object is necessary');
+  }
+
   getItems() {
   }
 
@@ -22,7 +26,7 @@ export class FirebaseCollectionService {
         resolve(data);
       }, reason => {
         reject(reason);
-      })
+      });
     });
   }
 

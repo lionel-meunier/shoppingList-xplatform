@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CATALOG_ROUTES} from './routes';
 import {RouterModule} from '@angular/router';
-import {CatalogComponent} from './components/catalog/catalog.component';
+import {CatalogComponent} from './components/catalog.component';
 import {FirebaseShoppingListModule} from '../firebase-shopping-list/firebase-shopping-list.module';
 import {SharedModule} from '../shared/shared.module';
-import {AddArticleComponent} from './components/catalog/add.article.component';
+import {AddArticleComponent} from './components/add.article.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule, MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
-import {DeleteArticleDialogComponent} from './components/catalog/delete.article.dialog';
+import {DeleteArticleDialogComponent} from './components/delete.article.dialog';
 
 @NgModule({
   declarations: [

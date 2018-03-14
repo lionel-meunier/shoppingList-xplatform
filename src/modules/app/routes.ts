@@ -25,5 +25,9 @@ export const ROUTES: Routes = [
   {
     path: 'catalog',
     loadChildren: 'modules/catalog/catalog.module#CatalogModule'
+  },
+  {
+    path: 'lists',
+    loadChildren: 'modules/all-list/all-list.module#AllListModule'
   }
 ];

@@ -1,0 +1,9 @@
+<form #formCreate="ngForm" (ngSubmit)="onCreate(formCreate)" novalidate>
+  <mat-form-field>
+    <input matInput
+           placeholder="List Name"
+           name="name"
+           [(ngModel)]="newData.name" required>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Create New List</button>
+</form>

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ShoppingArticleService} from '../../../firebase-shopping-list/services/article.service';
+import {ShoppingArticleService} from '../../firebase-shopping-list/services/article.service';
 import {MatSnackBar, MatTableDataSource} from '@angular/material';
-import {ItemInterface} from '../../../app/models/item.interface';
+import {ItemInterface} from '../../app/models/item.interface';
 import {Observable} from 'rxjs/Observable';
-import {Article} from '../../../firebase-shopping-list/models/article.model';
+import {Article} from '../../firebase-shopping-list/models/article.model';
 import {NgForm} from '@angular/forms';
 
 @Component({
