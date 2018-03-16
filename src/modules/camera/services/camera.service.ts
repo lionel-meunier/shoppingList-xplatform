@@ -1,3 +1,4 @@
 export abstract class CameraService {
-  public abstract getPicture(): Promise<string>;
+  public abstract getPicture(dim:object): Promise<string>;
+  public abstract getPreview(dim:object);
 }

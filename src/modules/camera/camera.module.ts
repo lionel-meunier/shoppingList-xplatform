@@ -4,12 +4,26 @@ import {CameraService} from './services';
 import {MobileCameraService} from './services/mobile-camera.service';
 import {DesktopCameraService} from './services/desktop-camera.service';
 import {environment} from '../../environments/environment';
+import {TakePictureComponent} from './components/take-picture.component';
+import {SharedModule} from '../shared/shared.module';
+import {FirebaseShoppingListModule} from '../firebase-shopping-list/firebase-shopping-list.module';
 
 export function cameraServiceFactory(): CameraService {
   return environment.mobile ? new MobileCameraService() : new DesktopCameraService();
 }
 
-@NgModule()
+@NgModule({
+  declarations: [
+    TakePictureComponent,
+  ],
+  imports: [
+    SharedModule,
+    FirebaseShoppingListModule
+  ],
+  exports: [
+    TakePictureComponent,
+  ]
+})
 export class CameraModule {
   public static forRoot(): ModuleWithProviders {
     return {

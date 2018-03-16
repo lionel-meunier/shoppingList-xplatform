@@ -12,7 +12,7 @@ export const environment = {
     authDomain: 'shopping-list-eeac2.firebaseapp.com',
     databaseURL: 'https://shopping-list-eeac2.firebaseio.com',
     projectId: 'shopping-list-eeac2',
-    storageBucket: '',
+    storageBucket: 'shopping-list-eeac2.appspot.com',
     messagingSenderId: '790263687372'
   }
 };

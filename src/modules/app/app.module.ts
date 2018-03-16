@@ -16,7 +16,6 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import {AngularFireAuthModule} from 'angularfire2/auth';
-import {MatInputModule, MatButtonModule, MatTableModule, MatMenuModule, MatCheckboxModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,12 +32,7 @@ import {MatInputModule, MatButtonModule, MatTableModule, MatMenuModule, MatCheck
     AngularFireAuthModule,
     SharedModule.forRoot(),
     CameraModule.forRoot(),
-    NavbarModule,
-    MatInputModule,
-    MatButtonModule,
-    MatTableModule,
-    MatMenuModule,
-    MatCheckboxModule
+    NavbarModule
   ],
   bootstrap: [RootComponent],
   providers: [APP_SERVICES, AngularFirestore],

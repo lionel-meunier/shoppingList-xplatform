@@ -1,0 +1,28 @@
+
+
+:host {
+  display: block;
+  background-color: black;
+  position: relative;
+
+  .picture-part {
+    img {
+      max-width : 100%;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  .preview-part {
+    video {
+      max-width : 100%;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  .tool-part {
+    position: absolute;
+    bottom: 0;
+    width : 100%;
+    text-align: center;
+  }
+}

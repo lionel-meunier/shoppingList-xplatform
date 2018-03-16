@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CameraService} from './camera.service';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class DesktopCameraService extends CameraService {
@@ -15,8 +16,8 @@ export class DesktopCameraService extends CameraService {
     } : null) || window.navigator.mediaDevices;
   }
 
-  public getPicture(): Promise<string> {
-    return this.getMediaDevices().getUserMedia({ video: true, audio: false })
+  public getPicture(dim: object): Promise<string> {
+    return this.getMediaDevices().getUserMedia({video: dim, audio: false})
       .then((stream: any) => {
         return new Promise((resolve, reject) => {
           try {
@@ -65,6 +66,15 @@ export class DesktopCameraService extends CameraService {
           }
         });
       });
+  }
+
+  public getPreview(dim: object) {
+    return this.getMediaDevices().getUserMedia({audio: false, video: dim}).then((stream) => {
+      return stream;
+    }, (err) => {
+      throw err;
+    });
+
   }
 
 }

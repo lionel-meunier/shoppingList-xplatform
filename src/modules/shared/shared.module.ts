@@ -4,27 +4,38 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {_window, WINDOW} from './services/window.token';
+import {MatButtonModule, MatCheckboxModule, MatInputModule, MatMenuModule, MatTableModule} from '@angular/material';
 
 @NgModule({
-    imports: [
-        HttpClientModule,
-        FormsModule,
-        CommonModule,
-    ],
-    exports: [
-        HttpClientModule,
-        FormsModule,
-        CommonModule,
-    ]
+  imports: [
+    HttpClientModule,
+    FormsModule,
+    CommonModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatMenuModule,
+    MatCheckboxModule,
+  ],
+  exports: [
+    HttpClientModule,
+    FormsModule,
+    CommonModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatMenuModule,
+    MatCheckboxModule,
+  ]
 })
 export class SharedModule {
-    public static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: [
-                ...SHARED_SERVICES,
-                { provide: WINDOW, useFactory: _window }
-            ],
-        };
-    }
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        ...SHARED_SERVICES,
+        {provide: WINDOW, useFactory: _window}
+      ],
+    };
+  }
 }

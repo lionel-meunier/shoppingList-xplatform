@@ -1,0 +1,19 @@
+
+
+<div *ngIf="imageSrc | async" class="picture-part">
+  <img [src]="imageSrc | async">
+</div>
+<div *ngIf="displayPreview" class="preview-part">
+  <video id="preview"></video>
+</div>
+<div class="tool-part">
+  <button mat-fab color="primary" *ngIf="displayPreview" (click)="takePhoto()">
+    <span class="fa fa-camera"></span>
+  </button>
+  <button mat-fab color="primary" *ngIf="!displayPreview" (click)="savePhoto()">
+    <span class="fa fa-save"></span>
+  </button>
+  <button mat-fab color="warn" *ngIf="!displayPreview" (click)="deletePhoto()">
+    <span class="fa fa-trash"></span>
+  </button>
+</div>

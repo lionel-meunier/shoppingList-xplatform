@@ -5,7 +5,7 @@ import {normalizeURL} from 'ionic-angular/util/util';
 @Injectable()
 export class MobileCameraService extends CameraService {
 
-  public getPicture(): Promise<string> {
+  public getPicture(dim:object): Promise<string> {
     return new Promise((resolve, reject) => {
       const removeDomListener = () => {
         document.removeEventListener('deviceready', onCordovaDeviceReady);
@@ -36,4 +36,8 @@ export class MobileCameraService extends CameraService {
     });
   }
 
+
+  public getPreview(dim:object) {
+
+  }
 }
