@@ -41,10 +41,6 @@ export class FeatureService {
         return Object.keys(this._features).map(key => new BrowserFeature(key, this._features[key]));
     }
 
-    public detectFeature(feature: BrowserFeatureKey): BrowserFeature {
-        return new BrowserFeature(feature, this._features[feature]);
-    }
-
     public getBrowserName() {
         return this._browser.name;
     }

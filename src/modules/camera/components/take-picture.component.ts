@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {CameraService} from '../services';
 import {AngularFireStorage} from 'angularfire2/storage';
 
@@ -10,6 +10,10 @@ import {AngularFireStorage} from 'angularfire2/storage';
 export class TakePictureComponent implements OnInit {
   public imageSrc: Promise<string>;
   public displayPreview: boolean;
+  private _widthPicture: number = 600;
+  private _heightPicture: number = 300;
+  @Input('aqf-name') pictureName: string;
+  @Output('aqf-add') addPicture = new EventEmitter();
 
   constructor(private _cameraService: CameraService,
               private _myElement: ElementRef,
@@ -20,14 +24,9 @@ export class TakePictureComponent implements OnInit {
     this._initPreview();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    console.log(event.target.innerWidth, this._myElement.nativeElement.width);
-  }
-
   private _initPreview() {
     this.displayPreview = true;
-    this._cameraService.getPreview({width: 600, height: 600}).then((stream) => {
+    this._cameraService.getPreview({width: this._widthPicture, height: this._heightPicture}).then((stream) => {
       let video = this._myElement.nativeElement.querySelector('#preview');
       video.src = window.URL.createObjectURL(stream);
       video.onloadedmetadata = function (e) {
@@ -37,7 +36,7 @@ export class TakePictureComponent implements OnInit {
   }
 
   public takePhoto(): void {
-    this.imageSrc = this._cameraService.getPicture({width: 600, height: 600}).then((url) => {
+    this.imageSrc = this._cameraService.getPicture({width: this._widthPicture, height: this._heightPicture}).then((url) => {
       this.displayPreview = false;
       return url;
     });
@@ -50,22 +49,21 @@ export class TakePictureComponent implements OnInit {
 
   public savePhoto(): void {
     this.imageSrc.then((url) => {
-      console.log('save photo', url);
       fetch(url)
         .then((response) => {
           return response.blob();
         })
-        .then((blob) =>{
-          console.log(blob);
-          let file = this._blobToFile(blob, 'test');
-          this.storage.upload('filePath', file);
-          // here the image is a blob
+        .then((blob) => {
+          const file = this._blobToFile(blob, 'test');
+          const filePath = 'images/' + this.pictureName;
+          this.storage.upload(filePath, file).then((result) => {
+            this.addPicture.emit(result.downloadURL);
+          });
         });
     });
-    //const task = this.storage.upload(filePath, file);
   }
 
-  private _blobToFile = (theBlob: Blob, fileName:string): File => {
+  private _blobToFile = (theBlob: Blob, fileName: string): File => {
     var b: any = theBlob;
     //A Blob() is almost a File() - it's just missing the two properties below which we will add
     b.lastModifiedDate = new Date();
@@ -73,5 +71,5 @@ export class TakePictureComponent implements OnInit {
 
     //Cast to a File() type
     return <File>theBlob;
-  }
+  };
 }

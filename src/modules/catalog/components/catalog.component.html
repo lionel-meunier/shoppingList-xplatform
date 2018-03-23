@@ -2,10 +2,16 @@
   CATALOG
   UNE partie création, recherche mise à jour et suppression.
   <app-add-article></app-add-article>
-  <div *ngFor="let article of articles">
-    {{article.name}}
-    <button mat-raised-button color="warn" (click)="onDelete(article)">
-      <span class="fa fa-trash"></span>
-    </button>
-  </div>
+  <mat-list-item *ngFor="let article of articles">
+    <div *ngIf="article.pictureUrl" mat-list-icon><img [src]="article.pictureUrl" [alt]="article.name"></div>
+    <div mat-line>{{article.name}}</div>
+    <div mat-line>
+      <button mat-raised-button color="primary" (click)="addPicture(article)">
+        <span class="fa fa-camera"></span>
+      </button>
+      <button mat-raised-button color="warn" (click)="onDelete(article)">
+        <span class="fa fa-trash"></span>
+      </button>
+    </div>
+  </mat-list-item>
 </div>

@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Add picture to "{{article.name}}"</h1>
+<div mat-dialog-content>
+  <app-take-picture [aqf-name]="article.name" (aqf-add)="addPicture($event)"></app-take-picture>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">No Thanks</button>
+</div>
