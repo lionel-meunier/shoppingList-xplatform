@@ -6,21 +6,26 @@ import {FirebaseShoppingListModule} from '../firebase-shopping-list/firebase-sho
 import {SharedModule} from '../shared/shared.module';
 import {AddArticleComponent} from './components/add.article.component';
 import {
-  MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule, MatDialogModule, MatInputModule, MatListModule,
+  MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule, MatDialogModule, MatGridListModule, MatInputModule, MatListModule,
   MatSnackBarModule
 } from '@angular/material';
 import {DeleteArticleDialogComponent} from './components/delete.article.dialog';
 import {AddPictureArticleDialogComponent} from './components/add-picture-article.dialog';
 import {CameraModule} from '../camera/camera.module';
+import {UpdateArticleDialogComponent} from './components/update-article.dialog';
+import {OpenPictureArticleDialogComponent} from './components/open-picture-article.dialog';
 
 @NgModule({
   declarations: [
     AddArticleComponent,
     DeleteArticleDialogComponent,
     AddPictureArticleDialogComponent,
+    UpdateArticleDialogComponent,
+    OpenPictureArticleDialogComponent,
     CatalogComponent
   ],
   imports: [
+    MatGridListModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
@@ -31,7 +36,12 @@ import {CameraModule} from '../camera/camera.module';
     CameraModule.forRoot(),
     FirebaseShoppingListModule
   ],
-  entryComponents: [DeleteArticleDialogComponent, AddPictureArticleDialogComponent],
+  entryComponents: [
+    DeleteArticleDialogComponent,
+    AddPictureArticleDialogComponent,
+    UpdateArticleDialogComponent,
+    OpenPictureArticleDialogComponent
+  ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ]

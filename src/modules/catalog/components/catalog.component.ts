@@ -5,9 +5,12 @@ import {Article} from '../../firebase-shopping-list/models/article.model';
 import {DeleteArticleDialogComponent} from './delete.article.dialog';
 import {AddPictureArticleDialogComponent} from './add-picture-article.dialog';
 import {AngularFireStorage} from 'angularfire2/storage';
+import {UpdateArticleDialogComponent} from './update-article.dialog';
+import {OpenPictureArticleDialogComponent} from './open-picture-article.dialog';
 
 @Component({
-  templateUrl: 'catalog.component.html'
+  templateUrl: 'catalog.component.html',
+  styleUrls: ['catalog.component.scss'],
 })
 export class CatalogComponent implements OnInit {
 
@@ -25,26 +28,26 @@ export class CatalogComponent implements OnInit {
   }
 
   onDelete(article: Article) {
-    const dialogRef = this.dialog.open(DeleteArticleDialogComponent, {
+    this.dialog.open(DeleteArticleDialogComponent, {
       data: {article: article}
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.articleService.delete(article);
-      }
+  }
+
+  onUpdate(article: Article) {
+    this.dialog.open(UpdateArticleDialogComponent, {
+      data: {article: article}
+    });
+  }
+
+  onOpenPicture(article: Article) {
+    this.dialog.open(OpenPictureArticleDialogComponent, {
+      data: {article: article}
     });
   }
 
   addPicture(article: Article) {
-    const dialogRef = this.dialog.open(AddPictureArticleDialogComponent, {
+    this.dialog.open(AddPictureArticleDialogComponent, {
       data: {article: article}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('addPicture', result);
-      if(result) {
-        article.pictureUrl = result;
-        this.articleService.update(article);
-      }
     });
   }
 

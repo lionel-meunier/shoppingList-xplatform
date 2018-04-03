@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>Confirmation</h1>
 <div mat-dialog-content>
-  Hi you want delete article : "{{data.article.name}}" ?
+  Hi you want delete article : "{{article.name}}" ?
 </div>
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="false">No Thanks</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+  <button mat-button (click)="onDelete()" cdkFocusInitial>Yes</button>
 </div>

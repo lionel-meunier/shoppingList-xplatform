@@ -1,0 +1,17 @@
+.article-line {
+  .article-title {
+    float: left;
+  }
+  .article-tools {
+    float: right;
+    padding-top: 12px;
+  }
+  &:after {
+    content : '';
+    display: block;
+    clear: both;
+  }
+}
+mat-list-item:hover {
+  background-color: #ccc;
+}

@@ -3,11 +3,9 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {Article} from './../models/article.model';
 import {Observable} from 'rxjs/Observable';
 import {FirebaseCollectionService} from './firebase.collection.service';
-import {ItemCollectionInterface} from '../models/item.collection.interface';
 
 @Injectable()
 export class ShoppingArticleService extends FirebaseCollectionService {
-  articlesCollection: AngularFirestoreCollection<Article>;
   articles: Observable<Article[]>;
 
   constructor(public afs: AngularFirestore) {
@@ -43,11 +41,29 @@ export class ShoppingArticleService extends FirebaseCollectionService {
     });
   }
 
-  async add(newArticle: Article) {
+  add(newArticle: Article) {
     return new Promise((resolve, reject) => {
-      this.search(newArticle.name).subscribe(data => {
+      const mySearch = this.search(newArticle.name).subscribe(data => {
+        mySearch.unsubscribe();
         if (data.length === 0) {
           super.add(newArticle).then(() => {
+            resolve(data);
+          }, (reason) => {
+            reject(reason);
+          });
+        } else {
+          reject('this name is already used to article');
+        }
+      });
+    });
+  }
+
+  update(articleUpdated: Article) {
+    return new Promise((resolve, reject) => {
+      const mySearch = this.search(articleUpdated.name).subscribe(data => {
+        mySearch.unsubscribe();
+        if (data.length === 0 || (data.length === 1 && data[0].id === articleUpdated.id)) {
+          super.update(articleUpdated).then(() => {
             resolve(data);
           }, (reason) => {
             reject(reason);

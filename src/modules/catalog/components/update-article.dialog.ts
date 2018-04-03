@@ -4,22 +4,22 @@ import {Article} from '../../firebase-shopping-list/models/article.model';
 import {ShoppingArticleService} from '../../firebase-shopping-list/services/article.service';
 
 @Component({
-  selector: 'app-add-picture-article-dialog',
-  templateUrl: 'add-picture-article.dialog.html',
+  selector: 'app-update-article-dialog',
+  templateUrl: 'update-article.dialog.html',
 })
-export class AddPictureArticleDialogComponent {
+export class UpdateArticleDialogComponent {
 
   public article: Article;
 
-  constructor(public dialogRef: MatDialogRef<AddPictureArticleDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<UpdateArticleDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private articleService: ShoppingArticleService,
               public snackBar: MatSnackBar) {
-    this.article = data.article;
+    this.article = new Article();
+    this.article.parseData(data.article.id, data.article.exportData());
   }
 
-  addPicture(refPicture: string): void {
-    this.article.pictureUrl = refPicture;
+  onUpdate(): void {
     this.articleService.update(this.article).then(() => {
       this.dialogRef.close(true);
     }, (reason) => {

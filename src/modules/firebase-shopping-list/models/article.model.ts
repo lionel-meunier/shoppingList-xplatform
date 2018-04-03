@@ -6,6 +6,7 @@ export class Article implements ItemCollectionInterface {
   pictureUrl: string;
 
   constructor() {
+    this.pictureUrl = '';
   }
 
   parseData(id, data): void {

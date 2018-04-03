@@ -22,7 +22,7 @@ export class FirebaseCollectionService {
     return new Observable();
   }
 
-  add(newItem: ItemCollectionInterface) {
+  add(newItem: ItemCollectionInterface): Promise<any> {
     return new Promise((resolve, reject) => {
       this.collection.add(newItem.exportData()).then(data => {
         resolve(data);
@@ -32,11 +32,11 @@ export class FirebaseCollectionService {
     });
   }
 
-  async update(updatedItem: ItemCollectionInterface) {
+  async update(updatedItem: ItemCollectionInterface): Promise<any> {
     return this.collection.doc(updatedItem.id).update(updatedItem.exportData());
   }
 
-  async delete(deletedItem: ItemCollectionInterface) {
+  async delete(deletedItem: ItemCollectionInterface): Promise<any> {
     return this.collection.doc(deletedItem.id).delete();
   }
 

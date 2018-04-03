@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Update article "{{article.name}}"</h1>
+<form #formUpdate="ngForm" (ngSubmit)="onUpdate(formUpdate)" novalidate>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput
+             placeholder="Article Name"
+             name="name"
+             [(ngModel)]="article.name" required>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">No Thanks</button>
+    <button mat-raised-button color="primary">Update Article</button>
+  </div>
+</form>
