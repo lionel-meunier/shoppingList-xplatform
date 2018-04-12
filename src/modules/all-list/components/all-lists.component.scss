@@ -1,0 +1,17 @@
+.list-line {
+  .list-title {
+    float: left;
+  }
+  .list-tools {
+    float: right;
+    padding-top: 12px;
+  }
+  &:after {
+    content : '';
+    display: block;
+    clear: both;
+  }
+}
+mat-list-item:hover {
+  background-color: #ccc;
+}

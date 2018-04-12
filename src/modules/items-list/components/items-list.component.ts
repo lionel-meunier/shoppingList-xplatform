@@ -17,7 +17,9 @@ export class ItemsListComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.idList = params['idList']; // (+) converts string 'id' to a number
+      this.listService.getListById(this.idList);
       this.listService.getItems(this.idList).subscribe(data => {
+        console.log(data);
         this.items = data;
       });
     });

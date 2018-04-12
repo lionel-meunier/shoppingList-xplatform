@@ -1,13 +1,19 @@
 <div class="content">
-
   <app-add-list></app-add-list>
-  <div *ngFor="let list of lists">
-    {{list.name}}
-    <button mat-raised-button color="warn" (click)="onDelete(list)">
-      <span class="fa fa-trash"></span>
-    </button>
-    <div class="navbar-item" routerLinkActive="active" [routerLink]="['/lists/'+list.id]">
-      <a>IN LIST</a>
-    </div>
-  </div>
+  <mat-list>
+    <h3 mat-subheader>Lists</h3>
+    <mat-list-item *ngFor="let list of lists">
+      <div mat-line class="list-line">
+        <h4><a class="list-title" [routerLink]="['/lists/'+list.id]">{{list.name}}</a></h4>
+        <div class="list-tools">
+          <button mat-mini-fab color="primary" (click)="onUpdate(list)">
+            <span class="fa fa-pencil-alt"></span>
+          </button>
+          <button mat-mini-fab color="warn" (click)="onDelete(list)">
+            <span class="fa fa-trash"></span>
+          </button>
+        </div>
+      </div>
+    </mat-list-item>
+  </mat-list>
 </div>

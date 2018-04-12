@@ -18,6 +18,12 @@ export class ShoppingListService {
     return new ItemList();
   }
 
+  getListById(idList: string) {
+    this.allListService.getItemById(idList).then((list: List) => {
+      console.log(list);
+    });
+  }
+
   getItems(idList: string) {
     return Observable.fromPromise(this.allListService.getItemById(idList).then((list: List) => {
       list.itemsRef.forEach((dataItems) => {

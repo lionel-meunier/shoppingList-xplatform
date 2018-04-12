@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {Article} from '../../firebase-shopping-list/models/article.model';
 import {ShoppingArticleService} from '../../firebase-shopping-list/services/article.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-update-article-dialog',
@@ -19,14 +20,16 @@ export class UpdateArticleDialogComponent {
     this.article.parseData(data.article.id, data.article.exportData());
   }
 
-  onUpdate(): void {
-    this.articleService.update(this.article).then(() => {
-      this.dialogRef.close(true);
-    }, (reason) => {
-      this.snackBar.open(reason, null, {
-        duration: 2000,
+  onUpdate(formUpdate: NgForm): void {
+    if (formUpdate.valid === true) {
+      this.articleService.update(this.article).then(() => {
+        this.dialogRef.close(true);
+      }, (reason) => {
+        this.snackBar.open(reason, null, {
+          duration: 2000,
+        });
       });
-    });
+    }
   }
 
 }
