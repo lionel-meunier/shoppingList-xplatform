@@ -1,21 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {ShoppingArticleService} from '../../firebase-shopping-list/services/article.service';
 import {MatSnackBar, MatTableDataSource} from '@angular/material';
-import {ItemInterface} from '../../app/models/item.interface';
-import {Observable} from 'rxjs/Observable';
-import {Article} from '../../firebase-shopping-list/models/article.model';
 import {NgForm} from '@angular/forms';
-import {FirebaseCollectionService} from '../services/firebase.collection.service';
 import {ItemCollectionInterface} from '../models/item.collection.interface';
+import {FirebaseCollectionService} from '../services/firebase.collection.service';
+import {AddFirebaseComponentInterface} from './add-firebase.component.interface';
 
 @Component({
   selector: 'app-add-firebase',
   templateUrl: 'add-firebase.component.html'
 })
-export class AddFirebaseComponent {
+export class AddFirebaseComponent implements AddFirebaseComponentInterface {
   newData: ItemCollectionInterface;
 
-  constructor(private dataService: FirebaseCollectionService,
+  constructor(public dataService: FirebaseCollectionService,
               public snackBar: MatSnackBar) {
     this.newData = dataService.createEmptyModel();
   }

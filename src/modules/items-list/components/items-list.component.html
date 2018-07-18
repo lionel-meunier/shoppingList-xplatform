@@ -1,8 +1,7 @@
-<div class="content">
-  Metre le nom de la list
-  <app-add-item></app-add-item>
-
-  <div *ngFor="let item of items">
+<div  *ngIf="currentList" class="content">
+  <h1>{{currentList.name}}</h1>
+  <app-add-item [aqf-current-list]="currentList"></app-add-item>
+  <div *ngFor="let item of currentList.items">
     <span *ngIf="item.ref">{{item.ref.name}}</span>
     <span>{{item.nbr}}</span>
     <button mat-raised-button color="warn" (click)="onDelete(item)">

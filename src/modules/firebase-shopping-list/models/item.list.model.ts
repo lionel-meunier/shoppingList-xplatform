@@ -1,9 +1,12 @@
 import {Article} from './article.model';
+import {List} from './list.model';
+import {ItemCollectionInterface} from './item.collection.interface';
 
-export class ItemList {
+export class ItemList implements ItemCollectionInterface {
   id: string;
   nbr: number;
   ref: Article;
+  parent: List;
   check: boolean;
   edit: boolean;
 
@@ -20,14 +23,17 @@ export class ItemList {
     this.check = !this.check;
   }
 
-  parseData(id, data) {
-    this.id = id;
+  parseData(data) {
     this.nbr = data.nbr;
-    this.check = data.check;
+    this.check = data.check ? data.check : false;
   }
 
   addRef(ref: Article) {
     this.ref = ref;
+  }
+
+  addParent(list: List) {
+    this.parent = list;
   }
 
   exportData() {

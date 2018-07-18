@@ -1,10 +1,17 @@
 <form #formCreate="ngForm" (ngSubmit)="onCreate(formCreate)" novalidate>
   Pouvoir choisir la reference dans le catalog.
   <mat-form-field>
-    <input matInput
-           placeholder="List Name"
-           name="name"
-           [(ngModel)]="newData.name" required>
+    <input
+      type="text"
+      matInput
+      placeholder="Choose Article"
+      [formControl]="autoCompleteControl"
+      [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let article of articlesFiltered | async" [value]="article.name" (onSelectionChange)="selectedArticle(article)">
+        <span>{{ article.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
   <button mat-raised-button color="primary">Create New Item</button>
 </form>

@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {ItemCollectionInterface} from '../models/item.collection.interface';
-import {List} from '../models/list.model';
+import {AngularFireList} from 'angularfire2/database';
+import {FirebaseCollectionServiceInterface} from './firebase.collection.service.interface';
 
 
 @Injectable()
-export class FirebaseCollectionService {
+export class FirebaseCollectionService implements FirebaseCollectionServiceInterface {
   collection: AngularFirestoreCollection<ItemCollectionInterface>;
   items: Observable<ItemCollectionInterface[]>;
 

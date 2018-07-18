@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {CameraService} from './camera.service';
-import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class DesktopCameraService extends CameraService {

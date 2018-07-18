@@ -14,7 +14,7 @@ export class List implements ItemCollectionInterface {
     this.id = id;
     this.name = data.name;
     this.nbr = Array.isArray(data.items) ? data.items.length : 0;
-    this.itemsRef = data.items;
+    this.itemsRef = Array.isArray(data.items) ? data.items : [];
     this.items = [];
   }
 

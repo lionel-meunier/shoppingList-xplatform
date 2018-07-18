@@ -1,7 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {SHARED_SERVICES} from './services';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {_window, WINDOW} from './services/window.token';
 import {MatButtonModule, MatCheckboxModule, MatInputModule, MatMenuModule, MatTableModule} from '@angular/material';
@@ -10,6 +10,7 @@ import {MatButtonModule, MatCheckboxModule, MatInputModule, MatMenuModule, MatTa
   imports: [
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     MatInputModule,
     MatButtonModule,
@@ -20,6 +21,7 @@ import {MatButtonModule, MatCheckboxModule, MatInputModule, MatMenuModule, MatTa
   exports: [
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     MatInputModule,
     MatButtonModule,

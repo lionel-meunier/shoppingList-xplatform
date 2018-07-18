@@ -4,7 +4,7 @@
     <h3 mat-subheader>Lists</h3>
     <mat-list-item *ngFor="let list of lists">
       <div mat-line class="list-line">
-        <h4><a class="list-title" [routerLink]="['/lists/'+list.id]">{{list.name}}</a></h4>
+        <h4><a class="list-title" [routerLink]="['/lists/'+list.id]">{{list.name}} {{list.nbr}}</a></h4>
         <div class="list-tools">
           <button mat-mini-fab color="primary" (click)="onUpdate(list)">
             <span class="fa fa-pencil-alt"></span>

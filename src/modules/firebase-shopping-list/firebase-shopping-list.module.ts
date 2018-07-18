@@ -12,6 +12,9 @@ import {AddFirebaseComponent} from './component/add-firebase.component';
 import {MatButtonModule, MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
 import {ShoppingAllListService} from './services/shopping.all.list.service';
 
+
+console.log(environment);
+
 @NgModule({
   declarations: [
     AddFirebaseComponent

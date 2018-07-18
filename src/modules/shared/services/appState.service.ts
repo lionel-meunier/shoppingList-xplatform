@@ -1,7 +1,7 @@
 import {Inject, Injectable, Renderer2, RendererFactory2} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {BehaviorSubject} from 'rxjs';
 import {WINDOW} from './window.token';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class AppStateService {

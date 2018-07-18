@@ -3,7 +3,7 @@ import {ALL_ITEM_LIST_ROUTES} from './routes';
 import {RouterModule} from '@angular/router';
 import {FirebaseShoppingListModule} from '../firebase-shopping-list/firebase-shopping-list.module';
 import {SharedModule} from '../shared/shared.module';
-import {MatButtonModule, MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
 import {ItemsListComponent} from './components/items-list.component';
 import {AddItemComponent} from './components/add-item.component';
 
@@ -13,6 +13,7 @@ import {AddItemComponent} from './components/add-item.component';
     ItemsListComponent
   ],
   imports: [
+    MatAutocompleteModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,

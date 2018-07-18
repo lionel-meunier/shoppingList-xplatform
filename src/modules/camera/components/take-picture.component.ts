@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CameraService} from '../services';
 import {AngularFireStorage} from 'angularfire2/storage';
 
@@ -10,8 +10,8 @@ import {AngularFireStorage} from 'angularfire2/storage';
 export class TakePictureComponent implements OnInit {
   public imageSrc: Promise<string>;
   public displayPreview: boolean;
-  private _widthPicture: number = 600;
-  private _heightPicture: number = 300;
+  private _widthPicture = 600;
+  private _heightPicture = 300;
   @Input('aqf-name') pictureName: string;
   @Output('aqf-add') addPicture = new EventEmitter();
 
@@ -27,7 +27,7 @@ export class TakePictureComponent implements OnInit {
   private _initPreview() {
     this.displayPreview = true;
     this._cameraService.getPreview({width: this._widthPicture, height: this._heightPicture}).then((stream) => {
-      let video = this._myElement.nativeElement.querySelector('#preview');
+      const video = this._myElement.nativeElement.querySelector('#preview');
       video.src = window.URL.createObjectURL(stream);
       video.onloadedmetadata = function (e) {
         video.play();
@@ -56,9 +56,9 @@ export class TakePictureComponent implements OnInit {
         .then((blob) => {
           const file = this._blobToFile(blob, 'test');
           const filePath = 'images/' + this.pictureName;
-          this.storage.upload(filePath, file).then((result) => {
-            this.addPicture.emit(result.downloadURL);
-          });
+          // this.storage.upload(filePath, file).then((result) => {
+          //   this.addPicture.emit(result.downloadURL);
+          // });
         });
     });
   }
